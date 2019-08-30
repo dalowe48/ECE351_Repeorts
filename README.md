@@ -1,4 +1,4 @@
-# ECE351_Repeorts
+# ECE351_Reports
 Contact Information:
 
 David Lowe
