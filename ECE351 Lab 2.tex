@@ -1,0 +1,178 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+
+\title{ECE351 Lab 2 Report}
+\author{David Lowe }
+\date{September 18, 2019}
+
+\begin{document}
+
+\maketitle
+
+\section*{Introduction}
+This lab went over some of the common methods we will use in this lab to build and plot functions and manipulate them through time reversal, scaling, translation, and differentiation. The lab was divided into three sections. The first section had us define the cosine function and plot it out at high resolution. The second section had us create a function to model the given plot. Section three had us manipulate this function in different ways.
+
+\section*{Mathematical Formulas}
+$$y=cos(t)$$
+$$f(t)=r(t)-r(t-3)+5u(t-3)-2u(t-6)-2r(t-6)$$
+
+\section*{Methods}
+For this lab the coding language used was Python 3.7.3. The code was written using Spyder IDE and the Latex report was compiled using Overleaf.
+
+\section*{Procedure}
+The lab handout was referenced for instructions for completing each of the three sections of the lab.
+\newpage
+
+\section*{Results}
+\subsection*{Section 1}
+Below is the plot for the function $y=cos(t)$ (Figure 1). Here is the code for the function followed by the code to create the plot:
+
+\begin{verbatim}
+t=np.arange(0,4*np.pi,np.pi/32)
+def func1(t):
+    y=np.cos(t)
+    return y
+    
+    y=func1(t)
+plt.plot(t,y)
+plt.ylabel('y(t)')
+plt.xlabel('t')
+plt.grid(True)
+plt.show()
+\end{verbatim}  
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=.5]{Part1plot}
+\caption{Part 1 Plot}
+\label{fig:Part1plot}
+\end{figure}
+
+\newpage
+
+\subsection*{Section 2}
+In this section we had to create function to match the graph in Figure 2 below. To do this we had to first define step functions and ramp functions individually, then call them in the final custom function.
+This is the final equation for the function in Figure 2: $$f(t)=r(t)-r(t-3)+5u(t-3)-2u(t-6)-2r(t-6)$$
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=.7]{Customplt.png}
+\caption{Custom Function Plot}
+\label{fig:Part1plot}
+\end{figure}
+
+Figure 3 has the plots for the following functions created for the step and ramp functions:
+
+\begin{verbatim}
+def my_step(t):
+    y = np.zeros((len(t),1))
+    for i in range (len(t)) :
+        if t[i] >= 0: 
+            y[i]=1
+        else: 
+            y[i]=0
+    return y
+
+def my_ramp(t):
+   y = np.zeros((len(t),1))    
+   for i in range (len(t)) :
+        if t[i] >= 0: 
+            y[i]=t[i]
+        else: 
+            y[i]=0
+   return y
+\end{verbatim} 
+
+\begin{figure}[h]
+\centering
+\includegraphics{Ut Rt plot.png}
+\caption{Step and Ramp Functions}
+\label{fig:Step and Ramp Functions}
+\end{figure}
+
+The Figure below demonstrates the graph of the function built from the graph in Figure 2.
+\begin{figure}[h]
+\centering
+\includegraphics[scale=.7]{Part2plot2.pdf}
+\caption{Custom Built Function}
+\label{fig:Step and Ramp Functions}
+\end{figure}
+
+\newpage
+
+\subsection*{Section 3}
+This section involved translating, inverting, and differentiating the function created in Section 2. in different ways. Below are the plots for each of the modified versions of the custom function.
+
+\begin{figure}[!]
+\centering
+\includegraphics[scale=.7]{Part3plot1.pdf}
+\caption{Time Reversal}
+\label{fig:Step and Ramp Functions}
+\end{figure}
+
+\begin{figure}[!]
+\centering
+\includegraphics[scale=.7]{Part3plot2.pdf}
+\caption{Time Shift by 4}
+\label{fig:Step and Ramp Functions}
+\end{figure}
+
+
+\begin{figure}[!]
+\centering
+\includegraphics[scale=.7]{Part3plot3.pdf}
+\caption{Time Reversal and Shift by 4}
+\label{fig:Step and Ramp Functions}
+\end{figure}
+
+\begin{figure}[!]
+\centering
+\includegraphics[scale=.7]{Part3plot4.pdf}
+\caption{Time Scale by .5}
+\label{fig:Step and Ramp Functions}
+\end{figure}
+
+\begin{figure}[!]
+\centering
+\includegraphics[scale=.7]{Part3plot5.pdf}
+\caption{Time Scale by 2}
+\label{fig:Step and Ramp Functions}
+\end{figure}
+
+Below is a hand drawn graph of the time derivative of the custom function followed by the Python built graph of the time derivative.
+
+\begin{figure}[!]
+\centering
+\includegraphics[scale=.08, angle=0]{handdrawn.JPG}
+\caption{Hand Drawn Derivative}
+\label{fig:Step and Ramp Functions}
+\end{figure}
+
+\begin{figure}[!]
+\centering
+\includegraphics[scale=.7]{Part3derivative.pdf}
+\caption{Time Scale by 2}
+\label{fig:Step and Ramp Functions}
+\end{figure}
+
+\newpage
+
+\section*{Conclusion}
+This lab showed that there are ways to make creating and using functions rather simple. The Python language does have a learning curve but once the syntax is known it turns out to be a powerful tool.
+\subsection*{Questions}
+\textbf{Are the plots from Part 3 Tasks 4 and 5 identical? Is it possible for them to match? Explain why or why not.}
+
+The hand drawn plot and the Python generated plots do match. It was a simple enough function to hand draw the time derivative of so this shows that Python can be used to correctly differentiate functions.
+
+
+\textbf{How does the correlation between the two plots change if you were to change the step size within the time variable in Task 5? Explain why it happens.}
+
+As you decrease the number of time steps, the graph loses resolution so the vertical jumps turn into steep slopes. This happens because the function is being sampled much fewer times so you are getting a very "grainy" view of the function.
+
+
+\textbf{In what way can the expectations and tasks be more clearly explained in this lab?}
+
+I think this lab had very clear and concise instructions for the tasks. The only part I got hung up on was plotting the derivative of the custom function. I still don't understand the code completely. A better explanation on creating a differentiation modifier would be helpful.
+
+\end{document}

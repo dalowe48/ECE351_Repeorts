@@ -1,0 +1,117 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+
+\title{ECE351 Lab 3 Report}
+\author{David Lowe }
+\date{September 25, 2019}
+
+\begin{document}
+
+\maketitle
+
+\section*{Introduction}
+This lab had us exploring convolution. Convolution is a way of solving differential equations using the impulse response and the input function. We created our own convolution function using Python then used Python's built in convolution function from scipy.signal to check our work.
+
+\section*{Mathematical Formulas}
+$$f1(t)=u(t-2)-u(t-9)$$
+$$f2(t)=e^{-t}u(t)$$
+$$f3(t)=r(t-2)[u(t-2)-u(t-3)]+r(4-t)[u(t-3)-u(t-4)]$$
+
+\section*{Methods}
+For this lab the coding language used was Python 3.7.3. The code was written using Spyder IDE and the Latex report was compiled using Overleaf.
+
+\section*{Procedure}
+The first task for this lab was to create the three functions: $$f1(t), f2(t), f3(t)$$. The three functions were then plotted on a single figure. For the second part we had to build the convolution function. We then used this custom made function to convolve the three functions as follows:
+$$f1(t)*f2(t)$$
+$$f2(t)*f3(t)$$
+$$F1(t)*f3(t)$$
+
+The three convolutions were then plotted with the built in convolution function to check how well the custom built function worked.
+
+\section*{Results}
+\subsection*{Section 1}
+Figure 1 shows the code for the three functions $f1(t), f2(t), f3(t)$. Figure 2 shows the plots of those functions.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=.8]{Images/functions_def.png}
+\caption{Code for the Three Functions}
+\label{fig:Code for the Three Functions}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=.8]{Images/functions_plots.png}
+\caption{Plots for the Three Functions}
+\label{fig:Plots for the Three Functions}
+\end{figure}
+
+\newpage
+
+\subsection*{Section 2}
+Figure 3 contains the code for the custom built convolution function. The code is not long, but it is quite complex to follow.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=.8]{Images/conv_code.png}
+\caption{Code for Convlution Function}
+\label{fig:Code for Convlution Function}
+\end{figure}
+
+The next three figures show the plots for the three convolutions done with the custom built function overlapped with the same functions convolved using the built-in scipy.signal convolution function. 
+
+\begin{figure}[!]
+\centering
+\includegraphics[scale=.7]{Images/conv1.png}
+\caption{$$f1(t)*f2(t)$$}
+\label{fig:$$f1(t)*f2(t)$$}
+\end{figure}
+
+\begin{figure}[!]
+\centering
+\includegraphics[scale=.7]{Images/conv2.png}
+\caption{$$f2(t)*f3(t)$$}
+\label{fig:$$f2(t)*f3(t)$$}
+\end{figure}
+
+\begin{figure}[!]
+\centering
+\includegraphics[scale=.7]{Images/conv3.png}
+\caption{$$f1(t)*f3(t)$$}
+\label{fig:$$f1(t)*f2(t)$$}
+\end{figure}
+
+\newpage
+
+To code the convolution the first thing that had to be done was to make adjust the ranges of the two functions so that the result function would cover the correct range. The function was then indexed so that the two functions were multiplied together at each specified point in time at a specified time step and added to the previously indexed result. The result was then returned.
+
+
+\section*{Conclusion}
+This lab was quite complex. It was difficult to understand what the code was doing to convolve the two functions but comparing the custom built function with the built-in function shows that they have the same result. If I didn't have any help with the code I probably would have attempted to do the convolution using the convolution integral. It seems that doing it graphically did save some time and confusion.
+
+\subsection*{Questions}
+\textbf{Did you do this lab alone or with classmates? If you collaborated to get to the solution, what did that process look like?}
+\vspace{5mm}
+
+I worked with classmates to develop the code for the convolution. We originally worked on pseudo code as a class and tried to work on it individually, then the TA started helping us work through the actual code as a class.
+\vspace{5mm}
+
+\textbf{What was the most difficult part of this lab for you, and what did the process of figuring it out look like?}
+\vspace{5mm}
+
+The most difficult part of the code was understanding how the Python syntax corresponded to what we were actually doing to convolve the two functions. Convolution itself is a little difficult to grasp unless you look at it graphically. So I had to try and visualize it graphically, then attempt to understand how the code corresponded to the graphical equivalent.
+\vspace{5mm}
+
+\textbf{Did you approach writing the code with analytical or graphical convolution in mind? Why did you chose this
+approach?}
+\vspace{5mm}
+I initially was thinking I would do the convolution analytically using integration functions in Python. It turns out that this would end up being a lot more labor intensive than trying to do it graphically.
+\vspace{5mm}
+
+\textbf{Was any part of this lab not clearly explained?}
+
+\vspace{5mm}
+The instructions for the lab were explained very well. I'm still trying to wrap my head fully around the actual convolution code.
+
+\end{document}
